@@ -112,9 +112,9 @@ Hub pages (root README, section indexes) follow the pink/purple sakura-night loo
 
 <img src="assets/branding/sakura-rule.svg" alt="" width="100%" style="display:block;margin:0 auto;max-width:720px">
 
-<h2 style="text-align:center">Licence note</h2>
+<h2 style="text-align:center">Licence</h2>
 
-Confirm the licence choice and copyright holder in [`LICENSE`](LICENSE) before release. Do not invent author or organisation names in contribution metadata.
+Fieldnotes is released under the [MIT License](LICENSE). Contributions are accepted under the same terms unless stated otherwise.
 
 <img src="assets/branding/sakura-rule.svg" alt="" width="100%" style="display:block;margin:0 auto;max-width:720px">
 

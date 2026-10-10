@@ -30,7 +30,7 @@ Visual identity: <a href="assets/branding/README.md" style="color:#c77dff"><img 
 | <a href="#evidence-legend" style="color:#c77dff"><img src="assets/branding/fieldnotes-arrow-forward.svg" width="14" height="14" alt=""> Evidence legend</a> | White→red confidence markers |
 | <a href="#contributing" style="color:#c77dff"><img src="assets/branding/fieldnotes-arrow-forward.svg" width="14" height="14" alt=""> Contributing</a> | Profile structure and Markdown conventions |
 | <a href="#security-reporting" style="color:#c77dff"><img src="assets/branding/fieldnotes-arrow-forward.svg" width="14" height="14" alt=""> Security reporting</a> | Secrets, disclosure, and what not to publish |
-| <a href="#licence" style="color:#c77dff"><img src="assets/branding/fieldnotes-arrow-forward.svg" width="14" height="14" alt=""> Licence</a> | Provisional MIT note |
+| <a href="#licence" style="color:#c77dff"><img src="assets/branding/fieldnotes-arrow-forward.svg" width="14" height="14" alt=""> Licence</a> | MIT |
 
 <h3 style="text-align:center">Investigations by category</h3>
 
@@ -169,4 +169,4 @@ Do not publish secrets or personal data here. Guidance: [SECURITY.md](SECURITY.m
 
 <h2 style="text-align:center">Licence</h2>
 
-A provisional MIT text lives in [`LICENSE`](LICENSE). Confirm the copyright holder and licence choice before publishing the repository.
+Released under the [MIT License](LICENSE). Copyright (c) 2026 sogki.
