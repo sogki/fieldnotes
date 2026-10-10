@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="40" viewBox="0 0 480 40" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="rule" x1="0" y1="20" x2="480" y2="20" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#9b4dca" stop-opacity="0"/>
+      <stop offset="25%" stop-color="#9b4dca"/>
+      <stop offset="50%" stop-color="#e05697"/>
+      <stop offset="75%" stop-color="#ff7eb6"/>
+      <stop offset="100%" stop-color="#ff7eb6" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="petalFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffe0ef"/>
+      <stop offset="55%" stop-color="#ff9ec8"/>
+      <stop offset="100%" stop-color="#e05697"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="19" width="480" height="2" rx="1" fill="url(#rule)"/>
+
+  <!--
+    Classic sakura: 5 petals, each tip with a V-notch (heart-like tip).
+    Petal path drawn upward from center, then rotated.
+  -->
+  <g id="blossom" transform="translate(240 20)">
+    <g transform="rotate(-90)">
+      <path fill="url(#petalFill)" d="M0,1.2
+        C2.2,-2.5 4.8,-6.2 3.2,-10.2
+        C2.4,-11.6 1.1,-12.2 0,-11.2
+        C-1.1,-12.2 -2.4,-11.6 -3.2,-10.2
+        C-4.8,-6.2 -2.2,-2.5 0,1.2 Z"/>
+    </g>
+    <g transform="rotate(-18)">
+      <path fill="url(#petalFill)" d="M0,1.2 C2.2,-2.5 4.8,-6.2 3.2,-10.2 C2.4,-11.6 1.1,-12.2 0,-11.2 C-1.1,-12.2 -2.4,-11.6 -3.2,-10.2 C-4.8,-6.2 -2.2,-2.5 0,1.2 Z"/>
+    </g>
+    <g transform="rotate(54)">
+      <path fill="url(#petalFill)" d="M0,1.2 C2.2,-2.5 4.8,-6.2 3.2,-10.2 C2.4,-11.6 1.1,-12.2 0,-11.2 C-1.1,-12.2 -2.4,-11.6 -3.2,-10.2 C-4.8,-6.2 -2.2,-2.5 0,1.2 Z"/>
+    </g>
+    <g transform="rotate(126)">
+      <path fill="url(#petalFill)" d="M0,1.2 C2.2,-2.5 4.8,-6.2 3.2,-10.2 C2.4,-11.6 1.1,-12.2 0,-11.2 C-1.1,-12.2 -2.4,-11.6 -3.2,-10.2 C-4.8,-6.2 -2.2,-2.5 0,1.2 Z"/>
+    </g>
+    <g transform="rotate(198)">
+      <path fill="url(#petalFill)" d="M0,1.2 C2.2,-2.5 4.8,-6.2 3.2,-10.2 C2.4,-11.6 1.1,-12.2 0,-11.2 C-1.1,-12.2 -2.4,-11.6 -3.2,-10.2 C-4.8,-6.2 -2.2,-2.5 0,1.2 Z"/>
+    </g>
+    <circle r="2.4" fill="#ffe6a8"/>
+    <circle r="1.15" fill="#f0a020"/>
+    <!-- tiny stamen dots -->
+    <circle cx="1.6" cy="-0.6" r="0.45" fill="#fff3c4"/>
+    <circle cx="-1.5" cy="-0.7" r="0.45" fill="#fff3c4"/>
+    <circle cx="0.2" cy="1.4" r="0.4" fill="#fff3c4"/>
+  </g>
+
+  <g transform="translate(205 14) scale(0.58)">
+    <g transform="translate(0 0)">
+      <g transform="rotate(-90)"><path fill="#ff9ec8" d="M0,1.2 C2.2,-2.5 4.8,-6.2 3.2,-10.2 C2.4,-11.6 1.1,-12.2 0,-11.2 C-1.1,-12.2 -2.4,-11.6 -3.2,-10.2 C-4.8,-6.2 -2.2,-2.5 0,1.2 Z"/></g>
+      <g transform="rotate(-18)"><path fill="#ff9ec8" d="M0,1.2 C2.2,-2.5 4.8,-6.2 3.2,-10.2 C2.4,-11.6 1.1,-12.2 0,-11.2 C-1.1,-12.2 -2.4,-11.6 -3.2,-10.2 C-4.8,-6.2 -2.2,-2.5 0,1.2 Z"/></g>
+      <g transform="rotate(54)"><path fill="#e05697" d="M0,1.2 C2.2,-2.5 4.8,-6.2 3.2,-10.2 C2.4,-11.6 1.1,-12.2 0,-11.2 C-1.1,-12.2 -2.4,-11.6 -3.2,-10.2 C-4.8,-6.2 -2.2,-2.5 0,1.2 Z"/></g>
+      <g transform="rotate(126)"><path fill="#e05697" d="M0,1.2 C2.2,-2.5 4.8,-6.2 3.2,-10.2 C2.4,-11.6 1.1,-12.2 0,-11.2 C-1.1,-12.2 -2.4,-11.6 -3.2,-10.2 C-4.8,-6.2 -2.2,-2.5 0,1.2 Z"/></g>
+      <g transform="rotate(198)"><path fill="#ff7eb6" d="M0,1.2 C2.2,-2.5 4.8,-6.2 3.2,-10.2 C2.4,-11.6 1.1,-12.2 0,-11.2 C-1.1,-12.2 -2.4,-11.6 -3.2,-10.2 C-4.8,-6.2 -2.2,-2.5 0,1.2 Z"/></g>
+      <circle r="2" fill="#ffe6a8"/>
+    </g>
+  </g>
+
+  <g transform="translate(275 26) scale(0.52)">
+    <g transform="rotate(-90)"><path fill="#ff7eb6" d="M0,1.2 C2.2,-2.5 4.8,-6.2 3.2,-10.2 C2.4,-11.6 1.1,-12.2 0,-11.2 C-1.1,-12.2 -2.4,-11.6 -3.2,-10.2 C-4.8,-6.2 -2.2,-2.5 0,1.2 Z"/></g>
+    <g transform="rotate(-18)"><path fill="#e05697" d="M0,1.2 C2.2,-2.5 4.8,-6.2 3.2,-10.2 C2.4,-11.6 1.1,-12.2 0,-11.2 C-1.1,-12.2 -2.4,-11.6 -3.2,-10.2 C-4.8,-6.2 -2.2,-2.5 0,1.2 Z"/></g>
+    <g transform="rotate(54)"><path fill="#9b4dca" d="M0,1.2 C2.2,-2.5 4.8,-6.2 3.2,-10.2 C2.4,-11.6 1.1,-12.2 0,-11.2 C-1.1,-12.2 -2.4,-11.6 -3.2,-10.2 C-4.8,-6.2 -2.2,-2.5 0,1.2 Z"/></g>
+    <g transform="rotate(126)"><path fill="#e05697" d="M0,1.2 C2.2,-2.5 4.8,-6.2 3.2,-10.2 C2.4,-11.6 1.1,-12.2 0,-11.2 C-1.1,-12.2 -2.4,-11.6 -3.2,-10.2 C-4.8,-6.2 -2.2,-2.5 0,1.2 Z"/></g>
+    <g transform="rotate(198)"><path fill="#ff9ec8" d="M0,1.2 C2.2,-2.5 4.8,-6.2 3.2,-10.2 C2.4,-11.6 1.1,-12.2 0,-11.2 C-1.1,-12.2 -2.4,-11.6 -3.2,-10.2 C-4.8,-6.2 -2.2,-2.5 0,1.2 Z"/></g>
+    <circle r="2" fill="#ffe6a8"/>
+  </g>
+</svg>

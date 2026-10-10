@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="PC application">
+  <defs>
+    <linearGradient id="g" x1="16" y1="6" x2="48" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ff7eb6"/>
+      <stop offset="55%" stop-color="#e05697"/>
+      <stop offset="100%" stop-color="#9b4dca"/>
+    </linearGradient>
+  </defs>
+  <!-- mouse body -->
+  <path fill="url(#g)" d="M32 8c-9 0-16 8-16 20v12c0 10 7 18 16 18s16-8 16-18V28C48 16 41 8 32 8z"/>
+  <!-- scroll split -->
+  <path d="M32 12v18" stroke="#1a0a14" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M20 30h24" stroke="#1a0a14" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+  <!-- scroll wheel -->
+  <rect x="29" y="16" width="6" height="10" rx="3" fill="#1a0a14"/>
+</svg>

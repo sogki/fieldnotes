@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Chat application">
+  <defs>
+    <linearGradient id="g" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ff7eb6"/>
+      <stop offset="55%" stop-color="#e05697"/>
+      <stop offset="100%" stop-color="#9b4dca"/>
+    </linearGradient>
+  </defs>
+  <!-- back bubble -->
+  <path fill="url(#g)" d="M38 12h14a8 8 0 0 1 8 8v12a8 8 0 0 1-8 8h-3l-5 6v-6h-6a8 8 0 0 1-8-8V20a8 8 0 0 1 8-8z"/>
+  <!-- front bubble -->
+  <path fill="#1a0a14" d="M12 22h22a8 8 0 0 1 8 8v14a8 8 0 0 1-8 8h-5l-7 7v-7H12a8 8 0 0 1-8-8V30a8 8 0 0 1 8-8z"/>
+  <circle cx="18" cy="37" r="2.2" fill="#ff9ec8"/>
+  <circle cx="26" cy="37" r="2.2" fill="#ff9ec8"/>
+  <circle cx="34" cy="37" r="2.2" fill="#ff9ec8"/>
+</svg>

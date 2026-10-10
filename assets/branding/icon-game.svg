@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Game application">
+  <defs>
+    <linearGradient id="g" x1="6" y1="10" x2="58" y2="54" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ff7eb6"/>
+      <stop offset="55%" stop-color="#e05697"/>
+      <stop offset="100%" stop-color="#9b4dca"/>
+    </linearGradient>
+  </defs>
+  <!-- controller body -->
+  <path fill="url(#g)" d="M18 22c-7 0-12 5.5-12 12.5S10 50 16 52c3 .8 5-1 7-3l2-2h14l2 2c2 2 4 3.8 7 3 6-2 10-8.5 10-17.5S53 22 46 22H18z"/>
+  <!-- D-pad -->
+  <rect x="16" y="32" width="10" height="3.2" rx="1.2" fill="#1a0a14"/>
+  <rect x="19.4" y="28.6" width="3.2" height="10" rx="1.2" fill="#1a0a14"/>
+  <!-- face buttons -->
+  <circle cx="42" cy="31" r="2.3" fill="#1a0a14"/>
+  <circle cx="46.5" cy="35.5" r="2.3" fill="#1a0a14"/>
+  <circle cx="42" cy="40" r="2.3" fill="#1a0a14"/>
+  <circle cx="37.5" cy="35.5" r="2.3" fill="#1a0a14"/>
+  <!-- grips shadow -->
+  <ellipse cx="14" cy="44" rx="5" ry="3" fill="#1a0a14" opacity=".25"/>
+  <ellipse cx="50" cy="44" rx="5" ry="3" fill="#1a0a14" opacity=".25"/>
+</svg>
