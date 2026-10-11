@@ -1,0 +1,371 @@
+# Developer-facing interfaces that could support community tools.
+# Status values:
+#   verified_integration       - tested within its permitted access model
+#   documented_integration     - reliable documentation; not fully tested here
+#   potential_integration      - evidence suggests usefulness; behaviour or permission not established
+#   unavailable_or_restricted  - access not granted, gone, or not usable under current restrictions
+#
+# Samples contain no credentials, account identifiers, or session material.
+# A reachable response is not a licence to redistribute the data.
+
+catalogue: genshin-impact-developer-features
+updated: 2026-10-11
+game: Genshin Impact
+publisher: COGNOSPHERE PTE. LTD.
+
+entries:
+  - id: official-game-data-api
+    name: Official HoYoverse game-data developer API
+    status: unavailable_or_restricted
+    classification: official-developer-api
+    host: null
+    method: null
+    path: null
+    auth_required: null
+    content_type: null
+    purpose: A documented public developer programme for characters, weapons, and account data.
+    data_returned: None identified.
+    potential_features: []
+    source: Search of public HoYoverse materials on 2026-10-11. No developer portal comparable to a published game-data API was found.
+    last_verified: 2026-10-11
+    verification: none_identified
+    restrictions: Do not treat official game or launcher hosts as an open developer API.
+    notes: Absence from the sources reviewed is not a proof that no private partner programme exists.
+
+  - id: genshin-dev-index
+    name: genshin.dev entity index
+    status: verified_integration
+    classification: community-maintained
+    host: genshin.jmp.blue
+    method: GET
+    path: /
+    auth_required: false
+    content_type: application/json
+    purpose: Lists static entity types served by the fan-made API.
+    data_returned: JSON object with a types array of ten names.
+    potential_features:
+      - Game-data browser navigation
+    source: https://github.com/genshindev/api and a live GET on 2026-10-11.
+    last_verified: 2026-10-11
+    verification: http_200
+    restrictions: Fan-made static data. The project states it does not interact with the game. Redistribution terms were not separately granted by this check.
+    sample_request: GET https://genshin.jmp.blue/
+    sample_response:
+      types:
+        - artifacts
+        - boss
+        - characters
+        - consumables
+        - domains
+        - elements
+        - enemies
+        - materials
+        - nations
+        - weapons
+
+  - id: genshin-dev-character
+    name: genshin.dev character record
+    status: verified_integration
+    classification: community-maintained
+    host: genshin.jmp.blue
+    method: GET
+    path: /characters/{id}
+    query: [lang]
+    auth_required: false
+    content_type: application/json
+    purpose: Static character profile, talents, constellations, and ascension materials.
+    data_returned: One character object. Verified id ayaka.
+    potential_features:
+      - Character browser
+      - Material calculator input
+      - Build-tool reference data
+    source: genshindev/api README and a live GET on 2026-10-11.
+    last_verified: 2026-10-11
+    verification: http_200
+    restrictions: Optional lang parameter. Not all languages contain every field. Not account data.
+    sample_request: GET https://genshin.jmp.blue/characters/ayaka?lang=en
+    sample_response:
+      name: Kamisato Ayaka
+      title: Frostflake Heron
+      vision: Cryo
+      weapon: Sword
+      nation: Inazuma
+      rarity: 5
+
+  - id: yatta-avatar-list
+    name: Project Amber avatar list
+    status: verified_integration
+    classification: community-maintained
+    host: gi.yatta.moe
+    method: GET
+    path: /api/v2/en/avatar
+    auth_required: false
+    content_type: application/json
+    purpose: Character summaries used by the Project Amber database.
+    data_returned: response 200 and data.items. This check counted 136 items. Sample id 10000002 was Kamisato Ayaka.
+    potential_features:
+      - Character browser
+      - Icon and element indexes
+      - Region and weapon-type filters
+    source: ambr-py BASE_URL https://gi.yatta.moe/api/v2 and a live GET on 2026-10-11.
+    last_verified: 2026-10-11
+    verification: http_200
+    restrictions: Community database. api.ambr.top did not resolve from this network on the same date.
+    sample_request: GET https://gi.yatta.moe/api/v2/en/avatar
+    sample_fields: [id, rank, name, element, weaponType, region, icon, release, route]
+
+  - id: ambr-top-host
+    name: api.ambr.top
+    status: unavailable_or_restricted
+    classification: community-maintained
+    host: api.ambr.top
+    method: GET
+    path: /v2/en/avatar
+    auth_required: false
+    purpose: Alternate hostname sometimes associated with Project Amber.
+    data_returned: None. DNS resolution failed.
+    potential_features: []
+    source: Live DNS lookup on 2026-10-11.
+    last_verified: 2026-10-11
+    verification: dns_resolution_failed
+    restrictions: Use the host that actually resolves. This failure does not by itself retire the Amber project.
+    notes: The same avatar list succeeded on gi.yatta.moe.
+
+  - id: hakushin-manifest
+    name: Hakushin static manifest
+    status: verified_integration
+    classification: community-maintained
+    host: static.nanoka.cc
+    method: GET
+    path: /manifest.json
+    auth_required: false
+    content_type: application/json
+    purpose: Version manifest for community game-data files.
+    data_returned: Top-level keys gi, hsr, ww, zzz, nte. For gi, latest was 7.1.51, live was 7.1, and available included 7.1.
+    potential_features:
+      - Update notification for data refreshes
+      - Version pinning for other static files
+    source: hakushin-py BaseClient.BASE_URL and a live GET on 2026-10-11.
+    last_verified: 2026-10-11
+    verification: http_200
+    restrictions: Community static host. The manifest version string is not the installed game's game_version field.
+    sample_request: GET https://static.nanoka.cc/manifest.json
+
+  - id: hakushin-character-list
+    name: Hakushin Genshin character list
+    status: verified_integration
+    classification: community-maintained
+    host: static.nanoka.cc
+    method: GET
+    path: /gi/{version}/character.json
+    auth_required: false
+    content_type: application/json
+    purpose: Character collection for a manifest version.
+    data_returned: JSON object. This check counted 152 entries for version 7.1.51.
+    potential_features:
+      - Character browser
+      - Diff against a previous data version
+    source: hakushin-py GIClient.fetch_characters URL pattern and a live GET on 2026-10-11.
+    last_verified: 2026-10-11
+    verification: http_200
+    restrictions: Path uses the manifest version. /gi/7.1.51/en/character.json returned 404; the list file is not under the language segment.
+    sample_request: GET https://static.nanoka.cc/gi/7.1.51/character.json
+
+  - id: hakushin-character-detail
+    name: Hakushin character detail
+    status: documented_integration
+    classification: community-maintained
+    host: static.nanoka.cc
+    method: GET
+    path: /gi/{version}/{lang}/character/{id}.json
+    auth_required: false
+    content_type: application/json
+    purpose: One character's detailed record, as constructed by hakushin-py.
+    data_returned: Not fetched in this session.
+    potential_features:
+      - Talent and constellation pages
+      - Build-tool detail views
+    source: hakushin-py GIClient.fetch_character_detail URL pattern, read 2026-10-11.
+    last_verified: 2026-10-11
+    verification: source_only
+    restrictions: Not live-tested. Confirm the path against a current manifest version before relying on it.
+
+  - id: hakush-in-host
+    name: api.hakush.in
+    status: unavailable_or_restricted
+    classification: community-maintained
+    host: api.hakush.in
+    method: GET
+    path: /gi/character
+    auth_required: false
+    purpose: Hostname guessed from the site name before the wrapper source was read.
+    data_returned: None. DNS resolution failed.
+    potential_features: []
+    source: Live DNS lookup on 2026-10-11.
+    last_verified: 2026-10-11
+    verification: dns_resolution_failed
+    notes: The wrapper's base URL is https://static.nanoka.cc, which did resolve.
+
+  - id: enka-showcase
+    name: Enka.Network showcase
+    status: documented_integration
+    classification: community-maintained
+    host: enka.network
+    method: GET
+    path: /api/uid/{uid}/
+    query: [info]
+    auth_required: false
+    content_type: application/json
+    purpose: Public character-showcase data for a UID, when that player has a populated showcase.
+    data_returned: Not requested for any real UID. GET /api/uid/0/?info returned HTTP 400, which matches the documented "wrong UID format" code.
+    potential_features:
+      - Showcase viewer for a UID the user is allowed to query
+      - Build snapshot display
+    source: https://github.com/EnkaNetwork/API-docs/blob/master/api.md and one error-path GET on 2026-10-11.
+    last_verified: 2026-10-11
+    verification: documented_error_path_only
+    restrictions: >
+      Official Enka rules prohibit UID enumeration and bulk harvesting.
+      Set a custom User-Agent. Honour the ttl field and HTTP 429.
+      playerInfo is another person's account metadata; do not collect it for this repository.
+    documented_status_codes:
+      400: Wrong UID format
+      404: Player does not exist
+      424: Game maintenance or broken update
+      429: Rate-limited
+      500: General server error
+      503: Service error
+
+  - id: webstatic-mi18n-version
+    name: HoYoverse webstatic i18n version file
+    status: verified_integration
+    classification: official-service
+    host: webstatic.hoyoverse.com
+    method: GET
+    path: /admin/mi18n/plat_os/m09291531181441/m09291531181441-version.json
+    auth_required: false
+    content_type: application/json
+    purpose: Small version file referenced by the local game log.
+    data_returned: A version number. This check received {"version":16}.
+    potential_features:
+      - Cache-busting check for a known static text pack
+    source: Hostname and path present in the local output_log.txt during the 2026-10-11 session, then fetched once.
+    last_verified: 2026-10-11
+    verification: http_200
+    restrictions: Official static content. One observed file does not document the whole webstatic tree. Do not crawl arbitrary admin paths.
+    sample_response:
+      version: 16
+
+  - id: dispatch-region-list
+    name: Global region dispatch
+    status: potential_integration
+    classification: official-service-undocumented
+    host: dispatchosglobal.yuanshen.com
+    method: GET
+    path: /query_region_list
+    auth_required: unknown
+    content_type: text/html
+    purpose: Region-list URL present in the local game log.
+    data_returned: HTTP 200 with a 16-character body, not a JSON document. Decoded form is 11 bytes and was not interpreted further.
+    potential_features:
+      - Region and server discovery, if the real client query shape were known
+    source: output_log.txt during the 2026-10-11 session, plus one unauthenticated GET with no extra query.
+    last_verified: 2026-10-11
+    verification: reachable_body_not_json
+    restrictions: Undocumented. A bare GET did not return a usable region list. Do not brute-force parameters.
+    notes: This hostname was not tied to a specific TCP socket. DNS cache was empty and TLS names were not captured.
+
+  - id: wish-history-page
+    name: In-game Wish History page
+    status: unavailable_or_restricted
+    classification: official-service-undocumented
+    host: gs.hoyoverse.com
+    method: null
+    path: /genshin/event/e20190909gacha-df01aea2/index.html
+    auth_required: true
+    content_type: null
+    purpose: History webview URL written to the local game log when Wish History was opened.
+    data_returned: Not fetched. Query parameter names included authkey, authkey_ver, sign_type, auth_appid, init_type, gacha_id, timestamp, lang, device_type, game_version, region, win_mode, and no_joypad_close. Values were not copied.
+    potential_features:
+      - Wish-history import, only with an authkey the account holder chooses to use
+    source: output_log.txt tail at 2026-10-11 17:12:18Z, during a user-opened Wish History screen. Paimon.moe documents a later getGachaLog call that was not present in this log tail.
+    last_verified: 2026-10-11
+    verification: local_log_url_only
+    restrictions: The authkey is a credential. Do not publish it or request the page with a captured key. This is not an official developer API.
+    notes: A ZFGameBrowser process gained port-443 connections in the same minute, including 163.181.243.203 (AS24429, Zhejiang Taobao). That address was not resolved to this hostname.
+    name: Wish history getGachaLog
+    status: unavailable_or_restricted
+    classification: official-service-undocumented
+    host: public-operation-hk4e-sg.hoyoverse.com
+    method: GET
+    path: /gacha_info/api/getGachaLog
+    auth_required: true
+    content_type: application/json
+    purpose: Paginated wish history for the in-game history page.
+    data_returned: Not requested. Requires a short-lived authkey.
+    potential_features:
+      - Wish-history import, only with a key the account holder chooses to use
+    source: MadeBaruna/paimon-moe import.svelte, reviewed 2026-10-10. Not live-tested.
+    last_verified: 2026-10-10
+    verification: source_only
+    restrictions: Not a published third-party developer API. Do not extract, store, or transmit authkeys in Fieldnotes.
+
+  - id: hoyolab-game-record
+    name: HoYoLAB game-record modules
+    status: unavailable_or_restricted
+    classification: official-service-undocumented
+    host: sg-public-api.hoyolab.com
+    method: GET
+    path: null
+    auth_required: true
+    purpose: Battle chronicle, daily note, diary, and related account features as wrapped by third-party clients.
+    data_returned: Not requested. Cookie authentication was not used.
+    potential_features:
+      - Resin and expedition dashboard
+      - Spiral Abyss history
+      - Only for an account the user authenticates themselves
+    source: vermaysha/hoyoapi public module docs, reviewed 2026-10-11. Exact paths were not re-copied.
+    last_verified: 2026-10-11
+    verification: third_party_docs_only
+    restrictions: Undocumented as an official developer API. Requires the account holder's cookies. Do not collect or replay sessions.
+
+  - id: launcher-log-upload
+    name: Launcher log upload URL
+    status: potential_integration
+    classification: official-service-undocumented
+    host: log-upload-os.hoyoverse.com
+    method: null
+    path: /sdk/dataUpload
+    auth_required: unknown
+    purpose: URL present in the local HoYoPlay launcher log.
+    data_returned: Not requested. No upload was performed.
+    potential_features: []
+    source: %APPDATA%\Cognosphere\HYP\1_0\logs\launcher.log, inspected for hostnames on 2026-10-11.
+    last_verified: 2026-10-11
+    verification: local_log_string_only
+    restrictions: Do not POST diagnostic data to this host as an integration experiment.
+
+  - id: device-fp-hosts
+    name: Device-fingerprint SDK host strings
+    status: potential_integration
+    classification: official-service-undocumented
+    host: sg-public-data-api.hoyoverse.com
+    method: null
+    path: null
+    auth_required: unknown
+    purpose: Host strings embedded in HoYoPlay HoYoDeviceFpSDK.dll.
+    data_returned: Not requested.
+    related_hosts:
+      - public-data-api.mihoyo.com
+      - sg-public-data-api.hoyoverse.com
+      - pre-sg-data-op.hoyoverse.com
+      - devop-data-takumi.mihoyo.com
+      - pre-op-data-takumi.mihoyo.com
+      - ptsop-data-takumi.mihoyo.com
+      - testing-sg-data-api.hoyoverse.com
+      - testing-sg-pts-data-api.mihoyo.com
+    potential_features: []
+    source: ASCII/URL scan of the signed local DLL on 2026-10-11.
+    last_verified: 2026-10-11
+    verification: embedded_strings_only
+    restrictions: Strings do not prove these hosts were contacted. Testing and pre-production names were not probed.

@@ -42,7 +42,7 @@
 
 **In scope:** Stable install layout, multi-process tree, updater, signatures, privacy-relevant folders, official APIs vs client internals.
 
-**Out of scope:** Extracting tokens, cookies, or session material; authenticating as the user; probing undocumented client routes; deep analysis of non-Stable Discord channels.
+**Out of scope:** Extracting tokens, cookies, or session material; signing in to an account; probing undocumented client routes; deep analysis of non-Stable Discord channels.
 
 <img src="../../assets/branding/sakura-rule.svg" alt="" width="100%" style="display:block;margin:0 auto;max-width:720px">
 

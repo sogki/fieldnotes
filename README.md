@@ -111,7 +111,7 @@ Visual identity: <a href="assets/branding/README.md" style="color:#c77dff"><img 
 
 > **🕵️ Hands-on investigation**
 >
-> Local HoYoPlay `1.18.0.380` + Genshin `7.1.0` (`hk4e_global`): Cognosphere-signed binaries, idle `HoYoProtect` driver, no game processes at snapshot. Wish-history `getGachaLog` + Paimon.moe import/proxy flow documented from source; Enka and genshin.dev checked as third-party. Authkeys and game launch were avoided.
+> Local HoYoPlay `1.18.0.380` + Genshin `7.1.0` (`hk4e_global`). On 2026-10-11 a user play session showed Cognosphere-signed `HYP`, helpers, `GenshinImpact.exe`, and `ZFGameBrowser`, with `HoYoProtect` **Running** / Manual during play and **Stopped** after the game exited while HoYoPlay stayed open. One persistent game socket matched a local security-server IP list. Public catalogues (genshin.dev, gi.yatta.moe, static.nanoka.cc) were checked; wish `authkey`s were not.
 >
 > This is **not** a completed security audit. Genshin Impact is **not** labelled malware, and it is **not** certified harmless.
 
@@ -119,6 +119,7 @@ Visual identity: <a href="assets/branding/README.md" style="color:#c77dff"><img 
 | --- | --- |
 | [<img src="assets/branding/fieldnotes-arrow-forward.svg" width="14" height="14" alt=""> Case overview](applications/genshin-impact/README.md) | Scope, status, and assessment |
 | [<img src="assets/branding/fieldnotes-arrow-forward.svg" width="14" height="14" alt=""> API and endpoints](applications/genshin-impact/api-and-endpoints.md) | Wish history, Paimon.moe, Enka, genshin.dev |
+| [<img src="assets/branding/fieldnotes-arrow-forward.svg" width="14" height="14" alt=""> Developer features](applications/genshin-impact/developer-features.md) | Community-tool catalogue and live checks |
 | [<img src="assets/branding/fieldnotes-arrow-forward.svg" width="14" height="14" alt=""> Investigation log](applications/genshin-impact/investigation-log.md) | Commands and verification |
 
 <img src="assets/branding/sakura-rule.svg" alt="" width="100%" style="display:block;margin:0 auto;max-width:720px">

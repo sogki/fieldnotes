@@ -2,7 +2,7 @@
 
 [<img src="../../assets/branding/fieldnotes-arrow-back.svg" width="14" height="14" alt=""> Case overview](README.md) · [<img src="../../assets/branding/fieldnotes-arrow-back.svg" width="14" height="14" alt=""> Fieldnotes](../../README.md)
 
-Local process tree and startup behaviour observed 2026-10-10 UTC while Stable was already running (not launched by the investigation).
+Local process tree and startup behaviour on 2026-10-10 UTC. Discord Stable was already running; the launch itself was not observed.
 
 <img src="../../assets/branding/sakura-rule.svg" alt="" width="100%" style="display:block;margin:0 auto;max-width:720px">
 

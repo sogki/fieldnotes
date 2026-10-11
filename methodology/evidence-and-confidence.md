@@ -58,7 +58,7 @@ Keep these distinct in prose and tables:
 
 | Claim | Label |
 | --- | --- |
-| Value `AF_uuid_4126040` existed under the user’s `Run` key | <img src="../assets/branding/evidence-confirmed.svg" width="20" height="20" alt="Confirmed"> (if observed) |
+| Value `AF_uuid_4126040` existed under the current account’s `Run` key | <img src="../assets/branding/evidence-confirmed.svg" width="20" height="20" alt="Confirmed"> (if observed) |
 | Suffix `4126040` is Aniimo’s Steam app ID | <img src="../assets/branding/evidence-strong.svg" width="20" height="20" alt="Strongly supported"> with catalogue / library verification |
 | Values were written by an AppsFlyer SDK inside Aniimo | <img src="../assets/branding/evidence-plausible.svg" width="20" height="20" alt="Plausible"> until writer/binary evidence exists |
 | Aniimo is malware | Unsupported — do not state |

@@ -63,7 +63,7 @@ Authoritative chronology: [investigation log §8](investigation-log.md#8-local-r
 
 <h2 style="text-align:center">Local observations</h2>
 
-**Scope:** Read-only CIM queries whose sanitised results were supplied for this case study. **No** service start/stop, driver load/unload, registry edits, or security-feature changes were performed while documenting these results. Fieldnotes did **not** re-execute the commands on the user’s PC for this documentation update.
+**Scope:** Read-only CIM queries. The sanitised results are what this page records. No service was started or stopped, no driver was loaded or unloaded, and no registry or security setting was changed. The commands were not run again when this page was written.
 
 **Privacy:** Executable and driver locations are sanitised. Usernames, computer names, drive letters, and unrelated inventory are omitted.
 
@@ -425,7 +425,7 @@ Microsoft references:
 **Potential follow-up (not completed):**
 
 1. Review Riot’s official Pre-Check / on-demand guidance ([on-demand article](https://www.riotgames.com/en/news/vanguard-on-demand) · [What is Vanguard?](https://support-valorant.riotgames.com/hc/en-us/articles/360046160933-What-is-Riot-Vanguard)).
-2. If the user chooses, inspect Vanguard’s existing **VGTray** interface for eligibility and activation status **without changing settings**.
+2. Inspect Vanguard’s existing **VGTray** icon for eligibility and activation status. Do not change settings.
 3. Record any further observations with timestamps and sanitised command output in the [investigation log](investigation-log.md).
 4. Reassess the on-demand interpretation only when additional evidence is available (for example Pre-Check status from VGTray, or a later CIM snapshot during / after a Riot game session—still without interfering with anti-cheat).
 

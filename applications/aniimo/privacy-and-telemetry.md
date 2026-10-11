@@ -47,7 +47,7 @@ Nearby strings include `Error opening key`, `Error setting key`, and the `Run` k
 
 > **❓ Unverified**
 >
-> That does **not** prove the running process wrote `AF_uuid_4126040`, and it does **not** prove an HTTP request was made during this session. The app ids are not hardcoded in the files that were searched, which fits the SDK reading an id at runtime (`getAppID` appears in `FPXSteam.dll`) and also means `759396` cannot be blamed on a literal embedded in these DLLs.
+> That does **not** prove the running process wrote `AF_uuid_4126040`, and it does **not** prove an HTTP request was made on 2026-10-11. The app ids are not hardcoded in the files that were searched, which fits the SDK reading an id at runtime (`getAppID` appears in `FPXSteam.dll`) and also means `759396` cannot be blamed on a literal embedded in these DLLs.
 
 `FPXGame.dll` did not match the AppsFlyer needles. `NEP2.dll` and `Aniimo.exe` did not either.
 
@@ -115,7 +115,7 @@ The prefix holder supports “the process talked to that network.” It does not
 
 <img src="../../assets/branding/sakura-rule.svg" alt="" width="100%" style="display:block;margin:0 auto;max-width:720px">
 
-<h2 style="text-align:center">Vendor documents (not this session’s packets)</h2>
+<h2 style="text-align:center">Vendor documents (not the 2026-10-11 packets)</h2>
 
 FunPlus International AG’s [User Privacy Policy](https://funplus.com/user-privacy-policy/) (last updated 23 December 2021, accessed 2026-10-11) says, in paraphrase, that player data can include an analytics ID, third-party account ids such as Steam, IP address, device and OS data, and usage data, and that analytics and storage providers may receive information. It also says FunPlus sometimes acts as a processor for a publisher. The policy is older than this PC client. It describes the company’s stated categories. It does not identify which of those fields the 2026-10-11 process sent.
 
@@ -150,7 +150,7 @@ A third-party statistics site associates this number with a different commercial
 | --- | --- | --- |
 | The FunPlus `FPX` / `FPXSteam` code is what creates `AF_uuid_<appid>` and `AF_counter_<appid>` | <img src="../../assets/branding/evidence-strong.svg" width="20" height="20" alt="Strongly supported"> | Strings and URLs match the observed names. No API trace of the write. Another build of the same SDK could explain `759396` |
 | This launch moved the `4126040` counter from 48 to 49 | <img src="../../assets/branding/evidence-plausible.svg" width="20" height="20" alt="Plausible"> | No read in the minute before 17:14:47. It did not keep rising between 17:15 and 17:22 |
-| The December 2024 `%LOCALAPPDATA%\appsflyer` files belong to Aniimo | <img src="../../assets/branding/evidence-unknown.svg" width="20" height="20" alt="Unknown"> | They predate the September 2026 release and were not updated in this session |
+| The December 2024 `%LOCALAPPDATA%\appsflyer` files belong to Aniimo | <img src="../../assets/branding/evidence-unknown.svg" width="20" height="20" alt="Unknown"> | They predate the September 2026 release and were not updated on 2026-10-11 |
 | Port `443` to the Tencent prefix is CrashSight | <img src="../../assets/branding/evidence-unknown.svg" width="20" height="20" alt="Unknown"> | CrashSight’s resolved address was a different IP, and SNI was not captured |
 | The protector driver exfiltrates data | **Not established** | No driver traffic was attributed |
 

@@ -62,7 +62,7 @@ Authoritative chronology for the developing Aniimo / `AF_*` startup registry cas
 
 **Observed:** Four unfamiliar entries, reported as **disabled**, with no identifiable publisher and no ordinary executable path shown in that UI.
 
-**Supports:** Something registered unusual startup-related items at the user level.
+**Supports:** Something registered unusual startup-related items under the current Windows account.
 
 **Still unknown:** Writer process, purpose, and whether the UI “disabled” state removed or only suppressed the entries.
 
@@ -408,7 +408,7 @@ $ap = Get-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 | | |
 | --- | --- |
 | **Observed** | Counters `49` and `0`. UUID fields GUID-shaped (not published). StartupApproved first byte `0x03`; FILETIME 2026-09-27 13:23:18 UTC |
-| **Supports** | Current data, and that the `759396` counter did not move during this session |
+| **Supports** | Current data, and that the `759396` counter did not move on 2026-10-11 |
 | **Limitation** | No pre-launch sample, so the change from the earlier `48` is not pinned to 17:14:47 |
 
 <h3 style="text-align:center">I. Process tree and install location</h3>
@@ -624,7 +624,7 @@ Done on 2026-10-11, with the limits recorded in [section 8](#8-live-session-2026
 Still open, in priority order:
 
 1. Sample `NEPKernel` state after Aniimo exits, without stopping the driver by hand.
-2. On a later launch, read `AF_counter_4126040` immediately before and after start. A move from `49` to `50` would tie the counter to a launch more tightly than this session could.
+2. On a later launch, read `AF_counter_4126040` immediately before and after start. A move from `49` to `50` would tie the counter to a launch more tightly than the 2026-10-11 sample could.
 3. Optional metadata-only DNS or SNI capture at startup for `events.appsflyer.com` and `pc.crashsight.wetest.net`. Do not publish payloads or identifiers.
 4. Keep looking for a primary catalogue entry for `759396`. Steam `appdetails` and the store URL fetch did not provide one. Do not adopt an uncorroborated third-party label.
 5. Re-read the non-secret PlayerPrefs scalars with a method that does not cast-fail the whole key. Leave account suffixes redacted.
@@ -636,7 +636,7 @@ Still open, in priority order:
 
 - Aniimo is **not** labelled malware.
 - Aniimo is **not** certified harmless.
-- AppsFlyer **strings and URLs** are verified in `FPX.dll` and `FPXSteam.dll`. An AppsFlyer **upload during this session** is **not** verified.
+- AppsFlyer **strings and URLs** are verified in `FPX.dll` and `FPXSteam.dll`. An AppsFlyer **upload on 2026-10-11** is **not** verified.
 - Template field names (`steamid`, `ip`, device fields) are **not** proof those values were sent.
 - A clean Defender result is **not** a completed security audit, and it is **not** a false-positive finding: no detection record was present to reclassify.
 - Event `2010` at launch time is **not** a detection of Aniimo.

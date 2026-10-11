@@ -14,6 +14,7 @@ Local install structure and component relationships observed 2026-10-10 (UTC), p
 - [Local installation map](#local-installation-map)
 - [HoYoPlay components](#hoyoplay-components)
 - [Game client components](#game-client-components)
+- [Game plugins checked on 2026-10-11](#game-plugins-checked-on-2026-10-11)
 - [Digital signatures](#digital-signatures)
 - [Configuration and logs](#configuration-and-logs)
 - [Sources](#sources)
@@ -115,7 +116,39 @@ Active install siblings (top-level):
 | `pkg_version` / audio pkg manifests | Patch inventory artefacts |
 | `driverError.log`, `upload_err.log` | Small local logs (contents not fully published) |
 
-No top-level `UnityPlayer.dll` was found on the **active** `<DRIVE>:` install (unlike the older `<OTHER_DRIVE>:` tree). Exact packaging change rationale: <img src="../../assets/branding/evidence-unknown.svg" width="20" height="20" alt="Unknown"> **Unknown**.
+No top-level `UnityPlayer.dll` was found on the **active** install. Exact packaging change rationale: <img src="../../assets/branding/evidence-unknown.svg" width="20" height="20" alt="Unknown"> **Unknown**.
+
+The standalone HYP record for `hk4e_global` points at a **different drive** from the active install. On 2026-10-11 that tree's `config.ini` reported `game_version=5.1.0`, `channel=1`, `cps=pcseaepic`. Its `GenshinImpact.exe` was 273,839,496 bytes with last write **2024-10-09**. The running process image was the active `7.1.0` tree, not this one. `cps=pcseaepic` is a channel token. It is <img src="../../assets/branding/evidence-plausible.svg" width="20" height="20" alt="Plausible"> **plausible** as a store or region channel label, and it was not matched to an Epic install record on this PC. A separate 2023 tree mentioned on 2026-10-10 was not walked again.
+
+`config.ini` on the active tree was last written **2026-10-11** and still reported `game_version=7.1.0`, `channel=1`, `sub_channel=0`, `cps=pcgclid`, `wpf_version=7.1.0.48145775`, plus a `plugin_<id>_version=1.0.0` key. The `uapc` value is a JSON attribution blob and is not copied here. HoYoPlay `config.ini` has `primary_game=hk4e_global`, `apm_switch=true`, `apm_log_switch=true`, and `apm_ftc_switch=false`.
+
+<img src="../../assets/branding/sakura-rule.svg" alt="" width="100%" style="display:block;margin:0 auto;max-width:720px">
+
+<h2 style="text-align:center">Game plugins checked on 2026-10-11</h2>
+
+These files sit under `GenshinImpact_Data\Plugins` or `GenshinImpact_Data`. Each Authenticode status below was **Valid** and the signer CN was **COGNOSPHERE PTE. LTD.** The version-resource company is listed because it sometimes differs from the signer.
+
+| File | Version resource | Why it is in the inventory |
+| --- | --- | --- |
+| `upload_crash.exe` | Present in `GenshinImpact_Data` | Crash-upload helper by name and path. Not seen running |
+| `crashreport.exe` | File version `2.51.0.1` | Crash helper. Not seen running |
+| `APM4webCrashR.exe` | File version `2.40.0.9` | APM / crash helper by filename. Not seen running |
+| `ZFGameBrowser.exe` | Signed plugin | Running during play. See [processes](processes-and-startup.md) |
+| `telemetry.dll` | File version `2.1.0.14`; company string `The Chromium Authors` | Telemetry module name. Signer is Cognosphere, not that company string |
+| `MiHoYoMTRSDK.dll` | Signed | Metrics SDK by filename |
+| `gmesdk.dll` | Company string `Tencent`; file version `1, 0, 0, 1` | Tencent GME by version resource. Signer is still Cognosphere. No Tencent-owned socket was identified |
+| `TencentGME.dll` | Signed | Same family by filename |
+| `HoYoNetworkSDK.dll`, `HoYoChannel.dll`, `HoYoSDKNetworkFallback.dll` | `HoYoChannel.dll` file version `1.2.0.266` | Network and channel modules by filename |
+| `kcp.dll` | Signed. A `StreamingAssets\kcp\LICENSE.txt` is present | KCP component is installed. Use of KCP on the wire was **not** observed |
+| `HYPass.dll` | File version `1.17.0.1347`, company Cognosphere | Present. Runtime role not observed |
+| `AccountPlatNative.dll` | File version `2.53.0.196` | Account platform module by filename |
+| `Astrolabe.dll` | Signed, also present in HoYoPlay | Present in both trees. A per-user `astrolabe` directory was updated at 16:44Z. Contents not published |
+
+`HoYoDeviceFpSDK.dll` is in the HoYoPlay version directory and was **not** found under the game `Plugins` folder. Its embedded host strings are listed in [privacy and telemetry](privacy-and-telemetry.md).
+
+HoYoPlay's `ico` directory contains `hk4e_global.ico`, `bh3_global.ico`, `hkrpg_global.ico`, `nap_global.ico`, and `hyg_global.ico`. Those are launcher assets for several titles. This case study does not treat them as installed games. The same HYP registry hive also has a `nap_global` record. That title is out of scope here.
+
+`GenshinImpact.exe` file version remains the Unity-era string `2017.4.30.0`, with an empty product-name field, size 444,260,776 bytes, last write 2026-09-23. The Authenticode signer is Cognosphere.
 
 <img src="../../assets/branding/sakura-rule.svg" alt="" width="100%" style="display:block;margin:0 auto;max-width:720px">
 

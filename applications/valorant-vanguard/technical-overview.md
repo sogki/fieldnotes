@@ -158,13 +158,13 @@ From Riot’s on-demand article (paraphrased; confirm the live page before actin
 
 > **⚠️ Caution**
 >
-> Documented here for understanding only. Do **not** change firmware, Secure Boot, TPM, VBS, HVCI, or IOMMU settings as part of this investigation.
+> Documented here for understanding only. Do **not** change firmware, Secure Boot, TPM, VBS, HVCI, or IOMMU settings in order to follow these notes.
 
 <h3 style="text-align:center">Checking eligibility or activation status</h3>
 
-| Interface | What Riot documents | Use in this investigation |
+| Interface | What Riot documents | What to check |
 | --- | --- | --- |
-| **VGTray** (Vanguard system tray icon) | Support: shows status and whether the PC meets requirements for Vanguard or Pre-Check; can start/stop on-demand without a full restart when eligible. On-demand article: redesigned VGTray helps identify missing settings. | Optional **read-only** look by the user — do not change settings |
+| **VGTray** (Vanguard system tray icon) | Support: shows status and whether the PC meets requirements for Vanguard or Pre-Check; can start/stop on-demand without a full restart when eligible. On-demand article: redesigned VGTray helps identify missing settings. | Optional read-only check of the tray icon. Do not change settings |
 | Riot player support / on-demand article | Guidance for enabling on-demand when desired | Prefer reading over experimenting |
 
 Windows-native Secure Boot / TPM / Memory Integrity **views** (without changing them) are listed in [services and drivers — F](services-and-drivers.md#f-windows-security-status-checks). Those checks alone still do **not** prove Pre-Check activation.

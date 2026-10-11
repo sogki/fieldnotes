@@ -79,9 +79,9 @@ Public path form:
 
 <h3 style="text-align:center">Processes and services</h3>
 
-Collection window 2026-10-11, local time (UTC+1). The Steam process image path was not readable. The Epic process image path was readable and is omitted. Session PIDs are omitted from the Epic rows.
+Collection window 2026-10-11, local time (UTC+1). The Steam process image path was not readable. The Epic process image path was readable and is omitted. Process IDs are omitted from the Epic rows.
 
-| Time | PID (this session) | Parent | Name | How it is classified |
+| Time | PID | Parent | Name | How it is classified |
 | --- | --- | --- | --- | --- |
 | 17:10:18 | 9964 | — | `explorer.exe` | Shell that later started Steam |
 | 17:12:54 | 5380 | `explorer.exe` | `steam.exe` | Steam client |
@@ -128,7 +128,7 @@ HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
 
 Machine `Run` keys checked (`HKLM` and `WOW6432Node`) had no `AF_*` or Aniimo-named values.
 
-`HKCU\...\Explorer\StartupApproved\Run` holds 12-byte blobs for the same four names. Byte 0 is `0x03`. Bytes 4–11 are a FILETIME: 2026-09-27 13:23:18 UTC, with the `759396` pair less than one millisecond from the `4126040` pair. The earlier case reported these Startup Apps entries as disabled. The byte value is recorded exactly; calling `0x03` “disabled” is <img src="../../assets/branding/evidence-strong.svg" width="20" height="20" alt="Strongly supported"> **Strongly supported** by that UI observation plus the blob shape, not by a Microsoft specification quoted in this session.
+`HKCU\...\Explorer\StartupApproved\Run` holds 12-byte blobs for the same four names. Byte 0 is `0x03`. Bytes 4–11 are a FILETIME: 2026-09-27 13:23:18 UTC, with the `759396` pair less than one millisecond from the `4126040` pair. An earlier look at Startup Apps showed these entries as disabled. The byte value is recorded exactly; calling `0x03` “disabled” is <img src="../../assets/branding/evidence-strong.svg" width="20" height="20" alt="Strongly supported"> **Strongly supported** by that UI observation plus the blob shape, not by a Microsoft specification quoted here.
 
 Other keys inspected only at name level:
 

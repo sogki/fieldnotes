@@ -138,7 +138,7 @@ See [Privacy and telemetry](privacy-and-telemetry.md).
 | Item | Status |
 | --- | --- |
 | `AF_*` scope | Current-user `Run` key; StartupApproved bytes match a disabled entry |
-| `NEPKernel` | Service key present, type kernel driver, start Manual, state Running during the session |
+| `NEPKernel` | Service key present, type kernel driver, start Manual, state Running while the game was open on 2026-10-11 |
 | After exit | <img src="../../assets/branding/evidence-unknown.svg" width="20" height="20" alt="Unknown"> The game was still running at the last check |
 | Scheduled tasks named for Aniimo, NEP, FunPlus, Pawprint, CrashSight, AppsFlyer | None matched |
 
@@ -146,7 +146,7 @@ See [Privacy and telemetry](privacy-and-telemetry.md).
 
 <h3 style="text-align:center">Privacy and telemetry</h3>
 
-See [Privacy and telemetry](privacy-and-telemetry.md). AppsFlyer is no longer only a community name match: the endpoint host is inside the FunPlus SDK binaries. That still does not prove which fields left the PC during this session.
+See [Privacy and telemetry](privacy-and-telemetry.md). AppsFlyer is no longer only a community name match: the endpoint host is inside the FunPlus SDK binaries. That still does not prove which fields left the PC on 2026-10-11.
 
 <img src="../../assets/branding/sakura-rule.svg" alt="" width="100%" style="display:block;margin:0 auto;max-width:720px">
 
@@ -156,7 +156,7 @@ See [Privacy and telemetry](privacy-and-telemetry.md). AppsFlyer is no longer on
 | --- | --- |
 | Defender threat list empty; no detection events (IDs 1006, 1015, 1116–1120) in the 180 days queried | <img src="../../assets/branding/evidence-confirmed.svg" width="20" height="20" alt="Confirmed"> Absence in those queries — not proof of safety, and not a false-positive case, because no detection record was there to reclassify |
 | Quick scan finished 2026-10-11 13:24:15 +01, before the Steam launch | <img src="../../assets/branding/evidence-confirmed.svg" width="20" height="20" alt="Confirmed"> Event `1001`. The scan id is omitted |
-| Real-time protection was on during the session | <img src="../../assets/branding/evidence-confirmed.svg" width="20" height="20" alt="Confirmed"> `Get-MpComputerStatus` |
+| Real-time protection was on while the game was open | <img src="../../assets/branding/evidence-confirmed.svg" width="20" height="20" alt="Confirmed"> `Get-MpComputerStatus` |
 | Running Microsoft-signed kernel driver from the game directory | <img src="../../assets/branding/evidence-confirmed.svg" width="20" height="20" alt="Confirmed"> Presence and signature. Purpose is a protector component, not a malware verdict |
 | Aniimo is malware | **Not claimed** |
 | Aniimo is definitively harmless | **Not claimed** |
@@ -217,7 +217,7 @@ Reusable references:
 
 > **❓ Unverified as a safety verdict**
 >
-> Available evidence does **not** establish that Aniimo is malware. It **does** establish a signed Unity game with a FunPlus SDK that references AppsFlyer, a NetEase protector driver loaded at runtime, and ordinary-looking cloud gameplay connections whose payloads were not read. The investigation remains incomplete where writer identity, `759396`, and post-exit behaviour are concerned.
+> Available evidence does **not** establish that Aniimo is malware. It **does** establish a signed Unity game with a FunPlus SDK that references AppsFlyer, a NetEase protector driver loaded at runtime, and ordinary-looking cloud gameplay connections whose payloads were not read. Writer identity, `759396`, and behaviour after exit are still open.
 
 Detail: [investigation log — conclusions](investigation-log.md#interpretation-and-current-conclusions).
 
@@ -225,11 +225,11 @@ Detail: [investigation log — conclusions](investigation-log.md#interpretation-
 
 <h2 style="text-align:center">Sources</h2>
 
-- Commands and sanitised results in the [investigation log](investigation-log.md), session 2026-10-11
+- Commands and sanitised results in the [investigation log](investigation-log.md), 2026-10-11
 - Steam store `appdetails` for `4126040`, accessed 2026-10-11; the same endpoint for `759396` returned `success: false`
 - RIPE Stat prefix overview for the observed peer addresses, accessed 2026-10-11
-- [FunPlus User Privacy Policy](https://funplus.com/user-privacy-policy/), last updated 23 December 2021, accessed 2026-10-11 — general controller/processor disclosure, not a capture of this session
-- Earlier user observations preserved in the investigation log (Startup Apps UI, counter `48`, undated quick-scan report)
+- [FunPlus User Privacy Policy](https://funplus.com/user-privacy-policy/), last updated 23 December 2021, accessed 2026-10-11 — general controller/processor disclosure, not a capture of traffic from this PC
+- Earlier notes in the investigation log (Startup Apps UI, counter `48`, undated quick-scan report)
 - [Telemetry and analytics](../../concepts/telemetry-and-analytics.md)
 
 <img src="../../assets/branding/sakura-rule.svg" alt="" width="100%" style="display:block;margin:0 auto;max-width:720px">

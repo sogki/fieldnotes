@@ -28,12 +28,12 @@ Structured log for the developing VALORANT / Riot Vanguard case study. Companion
 
 <h3 style="text-align:center">Not performed</h3>
 
-- No Fieldnotes agent re-execution of diagnostics on the user’s PC for this documentation update
+- Diagnostics were not run again on this PC when the page was updated
 - Signature / file-version inspection of `vgk.sys`
 - VGTray Pre-Check eligibility confirmation
 - Secure Boot / TPM / VBS status capture
 - Launching VALORANT or forcing Vanguard to start
-- Any configuration changes, service stops initiated by the investigation, or security-feature toggles
+- Any configuration changes, service stops, or security-feature toggles
 
 <img src="../../assets/branding/sakura-rule.svg" alt="" width="100%" style="display:block;margin:0 auto;max-width:720px">
 
@@ -106,7 +106,7 @@ Structured log for the developing VALORANT / Riot Vanguard case study. Companion
 
 **Outstanding questions:** Local Pre-Check enablement and eligibility.
 
-**Suggested next step:** VGTray status (read-only) if the user chooses.
+**Suggested next step:** read VGTray status without changing settings.
 
 <img src="../../assets/branding/sakura-rule.svg" alt="" width="100%" style="display:block;margin:0 auto;max-width:720px">
 
@@ -296,10 +296,10 @@ Full parameter notes: [services and drivers](services-and-drivers.md).
 
 <h2 style="text-align:center">Follow-up research (not completed)</h2>
 
-Documented as potential next steps only—**not** executed by Fieldnotes for this update:
+Documented as potential next steps only. They were **not** carried out for this update:
 
 1. [ ] Review Riot’s official Pre-Check guidance (on-demand article + What is Vanguard?)
-2. [ ] If the user chooses, inspect VGTray for eligibility / activation **without changing settings**
+2. [ ] Inspect VGTray for eligibility / activation **without changing settings**
 3. [ ] Record any further observations with timestamps and sanitised command output
 4. [ ] Reassess the on-demand interpretation only when additional evidence is available
 5. [ ] Optional: signature / version metadata for `vgk.sys` (Commands D–E)
@@ -316,7 +316,7 @@ Still **out of scope:** memory inspection, injection, disabling Vanguard, firmwa
 - Vanguard is **not** labelled malware.
 - Vanguard is **not** certified harmless or vulnerability-free.
 - Riot’s privacy statements are **not** treated as independently proven.
-- Fieldnotes did **not** execute diagnostic commands on the user’s PC while applying this documentation update.
+- Diagnostic commands were not run again on this PC while this page was updated.
 
 <img src="../../assets/branding/sakura-rule.svg" alt="" width="100%" style="display:block;margin:0 auto;max-width:720px">
 

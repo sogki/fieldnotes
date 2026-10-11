@@ -4,6 +4,8 @@
 
 Wish-history and community API landscape, with a **line-cited** Paimon.moe data-flow review (repos verified on default branch `main`, 2026-10-10).
 
+Interfaces that can feed community tools, with live checks from 2026-10-11, are catalogued separately in [Developer features](developer-features.md) and [developer-features.yaml](developer-features.yaml). This page keeps the wish-import data flow.
+
 > **ℹ️ Note**
 >
 > **Authentication** proves who/what is calling. **Authorisation** limits what that credential may read. Never publish real `authkey`, cookies, or UIDs.
@@ -77,9 +79,13 @@ https://public-operation-hk4e-sg.hoyoverse.com/gacha_info/api/getGachaLog?...&au
 
 | Service | Evidence of unauthenticated access |
 | --- | --- |
-| genshin.dev (`genshin.jmp.blue`) | README + live `GET /`, `GET /characters` (2026-10-10) |
-| Enka.Network UID routes | Enka docs + prior live `?info` on documented example UID |
+| genshin.dev (`genshin.jmp.blue`) | README + live `GET /`, `GET /characters` (2026-10-10) and `GET /characters/ayaka?lang=en` (2026-10-11) |
+| Project Amber (`gi.yatta.moe`) | Live `GET /api/v2/en/avatar` (2026-10-11). `api.ambr.top` did not resolve |
+| Hakushin (`static.nanoka.cc`) | Live manifest and `/gi/7.1.51/character.json` (2026-10-11). `api.hakush.in` did not resolve |
+| Enka.Network UID routes | Enka docs. 2026-10-11 checked only `GET /api/uid/0/?info` (HTTP 400). No real UID |
 | paimon.moe static site | Public website; wish import still needs a user-supplied history URL |
+
+Detail, samples, and status labels: [Developer features](developer-features.md).
 
 Paimon `/corsproxy` accepts a JSON body `{ url }` with **no auth in schema** (`corsProxy.json`) — that means the *proxy endpoint* is unauthenticated in source, **not** that HoYoverse `getGachaLog` is public without `authkey`.
 
@@ -289,7 +295,7 @@ async function addToVault(url: string, data: any): Promise<void> {
 | Size guard | Remote file size &gt; 50_000_000 → treat as empty/old stub | DataSync L301–304 |
 | Explicit enable | User must Google-sign-in and grant `drive.appdata` | SRC |
 
-Fieldnotes did **not** perform OAuth or access any Google account.
+No OAuth flow was completed, and no Google account was opened.
 
 <img src="../../assets/branding/sakura-rule.svg" alt="" width="100%" style="display:block;margin:0 auto;max-width:720px">
 
@@ -317,7 +323,7 @@ Fieldnotes did **not** perform OAuth or access any Google account.
 
 Absence of explicit URL logging in application source does **not** prove infrastructure or third-party systems never capture it.
 
-Fieldnotes did **not** run `getlink.ps1` or read local logs/caches for a real key.
+`getlink.ps1` was not run, and local logs and caches were not read for a real key.
 
 <img src="../../assets/branding/sakura-rule.svg" alt="" width="100%" style="display:block;margin:0 auto;max-width:720px">
 
@@ -360,6 +366,7 @@ Source-defined ≠ proven live-reachable for authenticated paths.
 
 <h2 style="text-align:center">Related resources</h2>
 
+- [Developer features](developer-features.md)
 - [Privacy and telemetry](privacy-and-telemetry.md)
 - [Investigation log](investigation-log.md)
 - [Discord API notes (contrast)](../discord/api-and-endpoints.md)

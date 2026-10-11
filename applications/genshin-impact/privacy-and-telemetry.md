@@ -12,6 +12,8 @@ Vendor disclosures plus local artefacts that suggest telemetry/security tooling.
 - [Local telemetry-related artefacts](#local-telemetry-related-artefacts)
 - [Anti-cheat / security surface](#anticheat--security-surface)
 - [Wish-history and third-party tools](#wish-history-and-third-party-tools)
+- [Connections during play (2026-10-11)](#connections-during-play-2026-10-11)
+- [Local files written around launch](#local-files-written-around-launch)
 - [What was not verified](#what-was-not-verified)
 - [Assessment table](#assessment-table)
 - [Sources](#sources)
@@ -27,7 +29,7 @@ Contact for privacy requests (policy): `privacy@hoyoverse.com`.
 | Claim | Label |
 | --- | --- |
 | Collection categories are publicly disclosed | <img src="../../assets/branding/evidence-confirmed.svg" width="20" height="20" alt="Confirmed"> Official policy |
-| Exact endpoints and payloads from this PC | <img src="../../assets/branding/evidence-unknown.svg" width="20" height="20" alt="Unknown"> **Unknown** (no packet capture) |
+| Connection metadata from this PC during one play session | <img src="../../assets/branding/evidence-confirmed.svg" width="20" height="20" alt="Confirmed"> IPs, ports, and owner pids. Payloads remain <img src="../../assets/branding/evidence-unknown.svg" width="20" height="20" alt="Unknown"> **unknown** |
 
 <img src="../../assets/branding/sakura-rule.svg" alt="" width="100%" style="display:block;margin:0 auto;max-width:720px">
 
@@ -56,7 +58,7 @@ These support that HoYoPlay ships telemetry-oriented components. They do **not**
 | Same SHA-256 in `system32` and active game folder | <img src="../../assets/branding/evidence-confirmed.svg" width="20" height="20" alt="Confirmed"> Local hashes |
 | Privacy policy lists security/plug-in related data categories | <img src="../../assets/branding/evidence-confirmed.svg" width="20" height="20" alt="Confirmed"> Official |
 | Kernel driver expands trust surface | <img src="../../assets/branding/evidence-confirmed.svg" width="20" height="20" alt="Confirmed"> General OS principle |
-| Driver behaviour while playing on this PC | <img src="../../assets/branding/evidence-unknown.svg" width="20" height="20" alt="Unknown"> Not observed (game not launched) |
+| Driver was Running, demand start, while the game process existed on 2026-10-11, and Stopped at 17:40Z after exit while HoYoPlay remained | <img src="../../assets/branding/evidence-confirmed.svg" width="20" height="20" alt="Confirmed"> State only. Behaviour inside the driver was not traced |
 
 <img src="../../assets/branding/sakura-rule.svg" alt="" width="100%" style="display:block;margin:0 auto;max-width:720px">
 
@@ -84,16 +86,88 @@ Community wish importers (including Paimon.moe) use a **temporary `authkey`** em
 
 Detail and line citations: [API and endpoints](api-and-endpoints.md).
 
-Fieldnotes did **not** extract or test a live authkey.
+No live `authkey` was extracted or tested.
+
+<img src="../../assets/branding/sakura-rule.svg" alt="" width="100%" style="display:block;margin:0 auto;max-width:720px">
+
+<h2 style="text-align:center">Connections during play (2026-10-11)</h2>
+
+Three samples between about 16:45Z and 16:54Z. `Get-DnsClientCache` returned **zero** entries, so a socket could not be joined to a DNS name. Reverse DNS was used instead. Local addresses are omitted. TLS payloads and SNI were not captured.
+
+| Owner | Remote | When seen | What that supports |
+| --- | --- | --- | --- |
+| `GenshinImpact.exe` | `8.211.9.13:8999` TCP established | All three samples | <img src="../../assets/branding/evidence-confirmed.svg" width="20" height="20" alt="Confirmed"> Same address is the first entry in `%LOCALLOW%\miHoYo\Genshin Impact\security_server_default_iplist_os_euro.txt`, written 16:44Z. File contents: `8.211.9.13`, `47.91.86.250`, `8.211.3.101`. RIPE prefix overview: all three are AS45102, Alibaba (US) Technology Co., Ltd. The other two addresses were **not** connected in these samples. Port 8999 had no PTR |
+| `GenshinImpact.exe` | `3.173.182.102:443` | All three samples | PTR `server-3-173-182-102.man51.r.cloudfront.net` |
+| `GenshinImpact.exe` | `18.165.160.84:443` and `18.165.160.110:443` | Present in some samples, not all | CloudFront PTRs. `18.165.160.84` was also owned by `HYP.exe` in the first sample |
+| `GenshinImpact.exe` | `18.66.118.4:443`, `3.33.237.18:443` | First sample only | CloudFront PTR, and `a32121eaf9bb9ac32.awsglobalaccelerator.com` (AS16509, Amazon). Gone in later samples |
+| `GenshinImpact.exe` | `127.0.0.1` ports `50244` and `50245` | All samples | Both ends owned by the game process. Local IPC. No remote party |
+| `HYP.exe` | `18.165.160.84:443`, `18.172.88.79:443`, and a `2600:9000::` address on 443 | First sample | CloudFront. Not present as established sockets in the last sample |
+| One `HYPHelper.exe` | `18.165.160.41:443`, `18.66.118.7:443`, `3.165.148.47:443`, a `2600:9000::` address, and `2a00:1450:4009:c15::8a:443` | First sample | CloudFront PTRs, plus Google PTR `uv-in-f138.1e100.net`. The other three helpers had no established TCP in that sample |
+| Six `ZFGameBrowser.exe` | None | After 16:44:43Z | No TCP rows for those pids. A short connection could have been missed |
+
+UDP: `GenshinImpact.exe` had one local UDP bind (`0.0.0.0`, ephemeral port). `Get-NetUDPEndpoint` does not show a remote peer. A remote UDP flow was **not observed**.
+
+| Layer | Statement |
+| --- | --- |
+| Observed | Owner pid, remote IP, port, TCP state, and PTR where one existed |
+| Associated provider | CloudFront, Amazon Global Accelerator, Google, or Alibaba, from PTR or RIPE ASN |
+| Inferred purpose | The `8999` peer is on the client's own "security server" IP list for `os_euro`. CloudFront 443 is consistent with CDN or web UI, including launcher static hosts found in logs, and was **not** pinned to one name |
+| Confirmed by a vendor document | The privacy policy describes device, game, and security-related collection. It was not used to name these IPs |
+| Unknown | Bytes sent, account fields, and the hostname behind each CloudFront or Accelerator address |
+
+`output_log.txt` was locked by the game. A shared read extracted URL hosts only. Paths present on 2026-10-11 included `dispatchosglobal.yuanshen.com/query_region_list`, several `sdk.hoyoverse.com` payment and announcement pages, and one `webstatic.hoyoverse.com` i18n version file. Those are log strings. They were not matched to sockets.
+
+A bare `GET` of the dispatch URL returned HTTP 200 and a 16-character body, not JSON. See [developer features](developer-features.md).
+
+<img src="../../assets/branding/sakura-rule.svg" alt="" width="100%" style="display:block;margin:0 auto;max-width:720px">
+
+<h2 style="text-align:center">Local files written around launch</h2>
+
+Under `%LOCALLOW%\miHoYo\Genshin Impact\`:
+
+| File | What was done | What it supports |
+| --- | --- | --- |
+| `info.txt` | Read, then redacted | Written at 16:42:59Z. Fields include client version `7.1_rel`, OS, a device-model string, CPU, GPU, a numeric memory field, a UID, and a client IP. The file's own type line is `Windows Crash Release`. UID and IP are **not** published. The `Crashes` directory contained **zero** files, so this info file is not evidence that the game crashed on 2026-10-11 |
+| `security_server_default_iplist_os_euro.txt` | Read | Three public IPs, as above. Written 16:44Z |
+| `UidInfo.txt` | Existence and size only (11 bytes) | Not opened |
+| `output_log.txt` | Hostnames only | Updated during play (about 311 KB). Full text not published |
+| `LocalLog.log` | Hostname scan | No `http` URLs with HoYoverse hosts in the scan. Updated during play |
+| webCaches `2.48` through `2.55` | Directory names only | Chromium-style cache trees. Local Storage and Session Storage were not opened |
+
+`launcher.log` (last write 2026-10-11; the file is about 4 MB and can contain older lines) includes, in the 16:42Z startup block:
+
+- Product display name HoYoPlay
+- `https://launcher-webstatic.hoyoverse.com/...` as a Win7 patch URL
+- `https://cs.hoyoverse.com/static/mihoyo-new-csc-service-hall-fe/index.html` as a safe-mode FAQ
+- Updater `AppId` `604565`
+- An updater `AppKey` (64 hexadecimal characters). **Not published**
+- The text `Begin to start data upload and kibana report`
+- A `CreateProcess` of `HYSafeMode.exe`
+
+Elsewhere in that log, hostname extraction also found `hyp-webstatic.hoyoverse.com` and `log-upload-os.hoyoverse.com/sdk/dataUpload`. The log line establishes that a data-upload code path logged its start. It does not establish the payload or a completed HTTP transaction.
+
+`upload_err.log` in the game folder is older (2026-03-21) and contains a completed upload note with HTTP `200`. That is a historical local result, not from 2026-10-11.
+
+ASCII scans of signed DLLs found these host strings. Certificate, DoH, and Chromium word-fragments from the same scan are treated as noise and are not listed as destinations.
+
+| Binary | Host strings retained | Label |
+| --- | --- | --- |
+| HoYoPlay `HoYoDeviceFpSDK.dll` | `sg-public-data-api.hoyoverse.com`, `public-data-api.mihoyo.com`, plus `pre-`, `testing-`, and `devop-` names on `hoyoverse.com` / `mihoyo.com` | <img src="../../assets/branding/evidence-confirmed.svg" width="20" height="20" alt="Confirmed"> Strings exist. <img src="../../assets/branding/evidence-unknown.svg" width="20" height="20" alt="Unknown"> Whether any were contacted |
+| HoYoPlay and game `telemetry.dll` | `minor-api.mihoyo.com`, `minor-api-os.hoyoverse.com` | Same distinction |
+| `MiHoYoMTRSDK.dll`, `HoYoNetworkSDK.dll`, `gmesdk.dll` | No HoYoverse hostname in this scan (certificate hosts only) | <img src="../../assets/branding/evidence-confirmed.svg" width="20" height="20" alt="Confirmed"> for the negative scan of those files. Not proof the modules never use a hostname built at runtime |
+
+`HKCU\Software\miHoYo\Genshin Impact` holds Unity graphics preferences and many `MIHOYOSDK_*` value names, including a device-fingerprint value and a last-UID value. Those values were not read. Some value **names** embed an account id; the names are not reproduced.
 
 <img src="../../assets/branding/sakura-rule.svg" alt="" width="100%" style="display:block;margin:0 auto;max-width:720px">
 
 <h2 style="text-align:center">What was not verified</h2>
 
-- Live network destinations for `telemetry.dll` / MTR SDK  
-- Whether APM switches can be user-disabled  
-- Contents of `output_log.txt` / webCaches  
-- Effectiveness of any in-game privacy toggles  
+- Which CloudFront distribution each 443 socket used
+- Payload of the `8999` session, or of `telemetry.dll` / the MTR SDK
+- Whether the APM switches in HoYoPlay `config.ini` can be turned off in the UI
+- Web-cache and `UidInfo.txt` contents
+- Whether any in-game privacy toggle changes the connections above
+- Driver and process state after the game exits  
 
 <img src="../../assets/branding/sakura-rule.svg" alt="" width="100%" style="display:block;margin:0 auto;max-width:720px">
 
