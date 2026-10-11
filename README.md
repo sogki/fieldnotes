@@ -68,7 +68,7 @@ Visual identity: <a href="assets/branding/README.md" style="color:#c77dff"><img 
 
 > **🕵️ Ongoing investigation**
 >
-> Four unfamiliar Startup Apps entries led to current-user `Run` registry values named `AF_uuid_*` / `AF_counter_*`. One suffix matches Aniimo’s Steam application ID. Origin, runtime behaviour, and any third-party data transmission remain incompletely verified.
+> A 2026-10-11 session inspected Aniimo on Steam and then from the Epic Games launcher. Both builds contain FunPlus `FPX` binaries with AppsFlyer endpoints. The Steam-only kernel driver was stopped while the Epic process was running. No AppsFlyer connection was observed, and `759396` remains unresolved.
 >
 > This is **not** a completed security audit. Aniimo is **not** labelled malware, and it is **not** certified harmless.
 

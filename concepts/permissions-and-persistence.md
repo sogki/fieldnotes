@@ -48,7 +48,7 @@ Kernel-mode drivers and always-on or on-demand anti-cheat services are a distinc
 
 <h2 style="text-align:center">Practical example</h2>
 
-The [Aniimo case study](../applications/aniimo/README.md) concerns values under the **current-user** `Run` key—not a machine-wide service. That scope distinction matters for impact and next steps.
+The [Aniimo case study](../applications/aniimo/README.md) includes values under the **current-user** `Run` key. A later live session also found a **Manual** kernel driver, `NEPKernel`, loaded from that install while the game was running. User autostart data and a kernel driver are different privilege tiers; neither is treated as proof of malware.
 
 By contrast, the [VALORANT & Vanguard case study](../applications/valorant-vanguard/technical-overview.md) concerns a vendor-documented **kernel-mode driver** and related services—machine-wide privilege with a different trust model than HKCU autostart values.
 

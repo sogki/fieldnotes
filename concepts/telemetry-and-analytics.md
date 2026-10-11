@@ -41,7 +41,7 @@ A Windows `Run` value named like `AF_uuid_<appid>` storing a GUID-style string i
 
 Real case pointers (not completed audits):
 
-- [Aniimo privacy and telemetry](../applications/aniimo/privacy-and-telemetry.md) — registry naming / analytics lead
+- [Aniimo privacy and telemetry](../applications/aniimo/privacy-and-telemetry.md) — `AF_*` registry names plus later AppsFlyer URL strings in the local FunPlus SDK binaries; transmission during the live session was not shown
 - [VALORANT & Vanguard — privacy and security](../applications/valorant-vanguard/privacy-and-security.md) — vendor anti-cheat disclosures vs independent verification limits
 
 <img src="../assets/branding/sakura-rule.svg" alt="" width="100%" style="display:block;margin:0 auto;max-width:720px">

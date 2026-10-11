@@ -17,7 +17,7 @@ Profiles are research notes—not completed security audits—unless a document 
 
 | Case | Status | Summary |
 | --- | --- | --- |
-| [<img src="../assets/branding/fieldnotes-arrow-forward.svg" width="14" height="14" alt=""> Aniimo](aniimo/README.md) | 🕵️ Developing | Four `AF_*` `Run` values; Steam `4126040`; AppsFlyer lead unverified |
+| [<img src="../assets/branding/fieldnotes-arrow-forward.svg" width="14" height="14" alt=""> Aniimo](aniimo/README.md) | 🕵️ Hands-on | Steam and Epic clients compared; AppsFlyer endpoints in FPX; `759396` still open |
 | [<img src="../assets/branding/fieldnotes-arrow-forward.svg" width="14" height="14" alt=""> VALORANT & Riot Vanguard](valorant-vanguard/README.md) | 🕵️ Developing | Pre-Check / on-demand docs; local `vgc`/`vgk` Stopped+Manual |
 | [<img src="../assets/branding/fieldnotes-arrow-forward.svg" width="14" height="14" alt=""> Genshin Impact](genshin-impact/README.md) | 🕵️ Hands-on | HoYoPlay 7.1.0; Paimon wish import / vault / Drive / tally |
 
